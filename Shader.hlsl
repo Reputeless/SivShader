@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////
 Texture2D texture0 : register(t0);
 SamplerState sampler0 : register(s0);
 
@@ -18,15 +19,16 @@ cbuffer ShaderInput : register(b1)
 	float  g_rightPressed;
 	float2 g_textureResolution;
 };
+////////////////////////////////////////////////////////
 
 float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 {
-	float d = 1.0 - distance(position.xy, g_mouse) / 200;
-	
-	if (g_leftPressed)
-	{
-		d = (d > 0.0);
-	}
+    float d = 1.0 - distance(position.xy, g_mouse) / 200;
 
-	return float4(d, d, d, 1) * texture0.Sample(sampler0, uv);
+    if (g_leftPressed)
+    {
+        d = (d > 0.0);
+    }
+
+    return float4(d, d, d, 1) * texture0.Sample(sampler0, uv);
 }
