@@ -14,6 +14,7 @@ struct ShaderInput
 void Main()
 {
 	Window::SetTitle(L"SivShader");
+	Window::SetStyle(WindowStyle::Sizeable);
 	const FilePath shaderPath = L"Shader.hlsl";
 	Texture texture(Image(640, 480, Palette::White));
 	ConstantBuffer<ShaderInput> cb;
