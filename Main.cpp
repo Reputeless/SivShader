@@ -48,7 +48,7 @@ void Main()
 
 		if (Dragdrop::HasItems())
 		{
-			if (Texture tmp{ Image(Dragdrop::GetFilePaths()[0]).fit(1280, 720, false) })
+			if (Texture tmp{ Dragdrop::GetFilePaths()[0] })
 			{
 				std::swap(tmp, texture);
 				stopwatch.restart();
