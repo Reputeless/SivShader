@@ -25,7 +25,7 @@ void Main()
 
 	FileMonitor monitor(shaderPath);
 	Stopwatch stopwatch(true);
-	
+
 	while (System::Update())
 	{
 		if (monitor.hasChanged() && monitor.retrieve() == FileAction::Modified)
@@ -52,13 +52,13 @@ void Main()
 			stopwatch.restart();
 		}
 
-		cb->resolution	= Window::Size();
-		cb->time		= stopwatch.ms() / 1000.0f;
-		cb->frame		= static_cast<float>(System::FrameCount());
-		cb->mouse		= Mouse::Pos();
-		cb->leftPressed	= Input::MouseL.pressed;
-		cb->rightPressed	= Input::MouseR.pressed;
-		cb->textureResolution	= Float4(texture.size, 1, 1);
+		cb->resolution = Window::Size();
+		cb->time = stopwatch.ms() / 1000.0f;
+		cb->frame = static_cast<float>(System::FrameCount());
+		cb->mouse = Mouse::Pos();
+		cb->leftPressed = Input::MouseL.pressed;
+		cb->rightPressed = Input::MouseR.pressed;
+		cb->textureResolution = Float4(Float2(texture.size), 1, 1);
 
 		Graphics2D::BeginPS(ps);
 		{
