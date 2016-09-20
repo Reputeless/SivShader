@@ -26,6 +26,14 @@
 ```cpp
 float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 {
+	return float4(uv, 1, 1);
+}
+```
+
+### サンプルシェーダ 2
+```cpp
+float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
+{
 	float d = 1.0 - distance(position.xy, g_mouse) / 200;
 	
 	if (g_leftPressed)
@@ -35,5 +43,14 @@ float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 
 	return float4(d, d, d, 1) * texture0.Sample(sampler0, uv);
 }
+```
+
+### サンプルシェーダ 3
+```cpp
+
+```
+
+### サンプルシェーダ 4
+```cpp
 
 ```
