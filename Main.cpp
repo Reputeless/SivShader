@@ -30,7 +30,7 @@ void Main()
 
 	while (System::Update())
 	{
-		if (Input::KeySpace.clicked || (monitor.hasChanged() && monitor.retrieve() == FileAction::Modified))
+		if (Input::KeySpace.clicked || (monitor.hasChanged() && monitor.retrieve() != FileAction::None))
 		{
 			if (PixelShader tmp{ shaderPath })
 			{
@@ -50,7 +50,6 @@ void Main()
 			if (Texture tmp{ Image(Dragdrop::GetFilePaths()[0]).fit(1280, 720, false) })
 			{
 				std::swap(tmp, texture);
-				Window::Resize(texture.size);
 				stopwatch.restart();
 				System::ResetFrameCount();
 			}
@@ -67,7 +66,7 @@ void Main()
 		Graphics2D::BeginPS(ps);
 		{
 			Graphics2D::SetConstant(ShaderStage::Pixel, 1, cb);
-			texture.draw();
+			Window::ClientRect()(texture).draw();
 		}
 		Graphics2D::EndPS();
 
