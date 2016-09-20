@@ -1,4 +1,3 @@
-
 # include <Siv3D.hpp>
 
 struct ShaderInput
