@@ -1,3 +1,4 @@
+
 # include <Siv3D.hpp>
 
 struct ShaderInput
@@ -18,14 +19,14 @@ void Main()
 
 	Texture texture(Image(640, 480, Palette::White));
 
-	FileMonitor monitor(shaderPath);
-
 	PixelShader ps(shaderPath);
 
 	if (!ps)
 	{
 		return;
 	}
+
+	FileMonitor monitor(shaderPath);
 
 	ConstantBuffer<ShaderInput> cb;
 
