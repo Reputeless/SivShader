@@ -47,7 +47,21 @@ float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 
 ### サンプルシェーダ 3
 ```cpp
+float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
+{
+	const float2 p = (position.xy - g_resolution / 2) / min(g_resolution.x, g_resolution.y);
+	
+	float3 c = float3(0, 0, 0);
+	
+	for (int i = 0; i < 20; ++i)
+	{
+		const float x = 0.4 * cos(2.0 * 3.14 * i / 20);
+		const float y = 0.4 * sin(2.0 * 3.14 * i / 20);
+		c += 0.01 / (distance(p, float2(x, y))) * float3(1, 1, 1);
+	}
 
+	return float4(c,1);
+}
 ```
 
 ### サンプルシェーダ 4
