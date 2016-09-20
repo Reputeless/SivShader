@@ -26,16 +26,22 @@ void Main()
 
 	FileMonitor monitor(shaderPath);
 	Stopwatch stopwatch(true);
+	bool hasError = false;
 
 	while (System::Update())
 	{
-		if (monitor.hasChanged() && monitor.retrieve() == FileAction::Modified)
+		if (Input::KeySpace.clicked || (monitor.hasChanged() && monitor.retrieve() == FileAction::Modified))
 		{
 			if (PixelShader tmp{ shaderPath })
 			{
 				std::swap(tmp, ps);
 				stopwatch.restart();
 				System::ResetFrameCount();
+				hasError = false;
+			}
+			else
+			{
+				hasError = true;
 			}
 		}
 
@@ -48,12 +54,6 @@ void Main()
 				stopwatch.restart();
 				System::ResetFrameCount();
 			}
-		}
-
-		if (Input::KeySpace.clicked)
-		{
-			stopwatch.restart();
-			System::ResetFrameCount();
 		}
 
 		cb->resolution = Window::Size();
@@ -70,5 +70,10 @@ void Main()
 			texture.draw();
 		}
 		Graphics2D::EndPS();
+
+		if (hasError)
+		{
+			Window::ClientRect().draw(ColorF(0.8, 0.4, 0.2, Sin(stopwatch.ms() / 200.0)*0.5 + 0.5));
+		}
 	}
 }
