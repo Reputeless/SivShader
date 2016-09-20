@@ -13,6 +13,7 @@ struct ShaderInput
 
 void Main()
 {
+	Window::SetTitle(L"SivShader");
 	const FilePath shaderPath = L"Shader.hlsl";
 	Texture texture(Image(640, 480, Palette::White));
 	ConstantBuffer<ShaderInput> cb;
@@ -34,6 +35,7 @@ void Main()
 			{
 				std::swap(tmp, ps);
 				stopwatch.restart();
+				System::ResetFrameCount();
 			}
 		}
 
@@ -44,12 +46,14 @@ void Main()
 				std::swap(tmp, texture);
 				Window::Resize(texture.size);
 				stopwatch.restart();
+				System::ResetFrameCount();
 			}
 		}
 
 		if (Input::KeySpace.clicked)
 		{
 			stopwatch.restart();
+			System::ResetFrameCount();
 		}
 
 		cb->resolution = Window::Size();
