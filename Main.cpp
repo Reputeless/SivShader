@@ -8,8 +8,7 @@ struct ShaderInput
 	Float2 mouse;
 	float  leftPressed;
 	float  rightPressed;
-	Float2 textureResolution;
-	Float2 _unused;
+	Float4 textureResolution;
 };
 
 void Main()
@@ -59,7 +58,7 @@ void Main()
 		cb->mouse		= Mouse::Pos();
 		cb->leftPressed	= Input::MouseL.pressed;
 		cb->rightPressed	= Input::MouseR.pressed;
-		cb->textureResolution	= texture.size;
+		cb->textureResolution	= Float4(texture.size, 1, 1);
 
 		Graphics2D::BeginPS(ps);
 		{
