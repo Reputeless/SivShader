@@ -15,20 +15,16 @@ struct ShaderInput
 void Main()
 {
 	const FilePath shaderPath = L"Shader.hlsl";
-
 	Texture texture(Image(640, 480, Palette::White));
+	ConstantBuffer<ShaderInput> cb;
 
 	PixelShader ps(shaderPath);
-
 	if (!ps)
 	{
 		return;
 	}
 
 	FileMonitor monitor(shaderPath);
-
-	ConstantBuffer<ShaderInput> cb;
-
 	Stopwatch stopwatch(true);
 	
 	while (System::Update())
@@ -38,7 +34,6 @@ void Main()
 			if (PixelShader tmp{ shaderPath })
 			{
 				std::swap(tmp, ps);
-
 				stopwatch.restart();
 			}
 		}
@@ -48,9 +43,7 @@ void Main()
 			if (Texture tmp{ Image(Dragdrop::GetFilePaths()[0]).fit(1280, 720, false) })
 			{
 				std::swap(tmp, texture);
-
 				Window::Resize(texture.size);
-
 				stopwatch.restart();
 			}
 		}
@@ -71,7 +64,6 @@ void Main()
 		Graphics2D::BeginPS(ps);
 		{
 			Graphics2D::SetConstant(ShaderStage::Pixel, 1, cb);
-
 			texture.draw();
 		}
 		Graphics2D::EndPS();
