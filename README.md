@@ -24,6 +24,7 @@
 
 ### サンプルシェーダ 1
 <img src="s1.png" wifth="640" height="480">
+
 ```cpp
 float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 {
@@ -33,6 +34,7 @@ float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 
 ### サンプルシェーダ 2
 <img src="s2.png" wifth="640" height="480">
+
 ```cpp
 float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 {
@@ -49,6 +51,7 @@ float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 
 ### サンプルシェーダ 3
 <img src="s3.png" wifth="640" height="480">
+
 ```cpp
 float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 {
@@ -69,6 +72,7 @@ float4 PS(float4 position : SV_POSITION, float2 uv : TEXCOORD0) : SV_Target
 
 ### サンプルシェーダ 4
 <img src="s4.png" wifth="640" height="480">
+
 ```cpp
 // Endless Tunnel
 // By: Brandon Fogerty
